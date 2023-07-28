@@ -5,9 +5,11 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Rating from "@mui/material/Rating";
 import { useNavigate } from "react-router-dom";
 
-export default function Carousl({ config }) {
+export default function Carousl( {config}) {
   const navigate = useNavigate();
   const [post, setPost] = React.useState();
+
+  //console.log("Config", config);
 
   React.useEffect(() => {
     axios.request(config).then((response) => {
@@ -60,7 +62,7 @@ export default function Carousl({ config }) {
                     textOverflow: "ellipsis",
                   }}
                 >
-                  {item?.original_title || item?.original_name}
+                  {item?.original_name}
                 </div>
                 <div
                   style={{
@@ -107,7 +109,7 @@ export default function Carousl({ config }) {
                     backgroundColor: "#DA3714",
                     cursor: "pointer"
                   }}
-                  onClick={() => {navigate(`/movies/${item?.id}`)}}
+                  onClick={() => {navigate(`/tvseries/${item?.id}`)}}
                 ></div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +127,7 @@ export default function Carousl({ config }) {
                     marginTop: "435.75px",
                     cursor: "pointer"
                   }}
-                  onClick={() => {navigate(`/movies/${item?.id}`)}}
+                  onClick={() => {navigate(`/tvseries/${item?.id}`)}}
                 >
                   <path
                     d="M14.75 7.70096C15.75 8.27831 15.75 9.72169 14.75 10.299L2.375 17.4438C1.375 18.0211 0.125 17.2994 0.125 16.1447L0.125 1.85529C0.125 0.700587 1.375 -0.0210977 2.375 0.556252L14.75 7.70096Z"
@@ -152,7 +154,7 @@ export default function Carousl({ config }) {
                     marginTop: "439.35px",
                     cursor: "pointer"
                   }}
-                  onClick={() => {navigate(`/movies/${item?.id}`)}}
+                  onClick={() => {navigate(`/tvseries/${item?.id}`)}}
                 >
                   Watch Now
                 </span>

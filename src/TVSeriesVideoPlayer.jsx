@@ -2,17 +2,17 @@ import * as React from "react";
 import axios from "axios";
 import ReactPlayer from "react-player";
 import Layout from "./Layout.jsx";
-import Card from "./Card";
+import Card from "./Card.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function VideoPlayer() {
+export default function TVSeriesVideoPlayer() {
   const navigate = useNavigate();
   const { idx } = useParams();
 
   let config = {
     method: "get",
     maxBodyLength: Infinity,
-    url: "https://api.themoviedb.org/3/discover/movie",
+    url: "https://api.themoviedb.org/3/discover/tv",
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTExNmExODI3MGM2MjQwNDM2YjU5NTBkM2E5Nzk0MiIsInN1YiI6IjY0Yjc5MDQ0MTA5Y2QwMDBjN2IwOGI4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6RvMsGmolIcMF89SdM8MndX6WvFp-k3BeR5Mve8iT4U",
@@ -22,7 +22,7 @@ export default function VideoPlayer() {
 
   const options1 = {
     method: "GET",
-    url: `https://api.themoviedb.org/3/movie/${idx}/videos`,
+    url: `https://api.themoviedb.org/3/tv/${idx}/videos`,
     headers: {
       accept: "application/json",
       Authorization:
@@ -43,7 +43,7 @@ export default function VideoPlayer() {
       let arr = response.data.results?.filter((item, id) => {
         return item?.id == idx;
       });
-      arr[0].release_date = arr[0].release_date.slice(0, 4);
+      arr[0].first_air_date = arr[0].first_air_date.slice(0, 4);
       setCurrentMovie(arr);
     });
 
@@ -87,7 +87,7 @@ export default function VideoPlayer() {
             marginLeft: "48px",
           }}
         >
-          {currentMovie[0].original_title || currentMovie[0].original_name}
+          {currentMovie[0].original_name}
         </div>
 
         {/* <svg
@@ -269,7 +269,7 @@ export default function VideoPlayer() {
                 justifyContent: "center",
               }}
             >
-              {currentMovie[0]?.release_date}
+              {currentMovie[0]?.first_air_date}
             </div>
           </span>
         </div>
@@ -353,7 +353,7 @@ export default function VideoPlayer() {
               return (
                 <div
                   onClick={() => {
-                    navigate(`/movies/${item?.id}`);
+                    navigate(`/tvseries/${item?.id}`);
                   }}
                   style={{ cursor: "pointer" }}
                   className="card"

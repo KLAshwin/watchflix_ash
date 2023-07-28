@@ -1,7 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 import Layout from "./Layout.jsx";
-import Carousel from "./Carousl.jsx";
+import Carousel from "./TVSeriesCarousl.jsx";
 import Card from "./Card";
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +9,7 @@ export default function TVSeries() {
   const navigate = useNavigate();
 
   let config = {
+    route: "movies",
     method: "get",
     maxBodyLength: Infinity,
     url: "https://api.themoviedb.org/3/discover/tv?api_key=XXXXX&with_genres=10759",
@@ -79,7 +80,7 @@ export default function TVSeries() {
   return (
     <>
       <Layout>
-        <Carousel config={config} />
+        <Carousel config={config}/>
         <div
           style={{
             color: "#FFF",
@@ -106,7 +107,7 @@ export default function TVSeries() {
               return (
                 <div
                   onClick={() => {
-                    navigate(`/movies/${item?.id}`);
+                    navigate(`/tvseries/${item?.id}`);
                   }}
                   style={{ cursor: "pointer" }}
                   className="card"
@@ -148,7 +149,7 @@ export default function TVSeries() {
               return (
                 <div
                   onClick={() => {
-                    navigate(`/movies/${item?.id}`);
+                    navigate(`/tvseries/${item?.id}`);
                   }}
                   style={{ cursor: "pointer" }}
                   className="card"
@@ -190,7 +191,7 @@ export default function TVSeries() {
               return (
                 <div
                   onClick={() => {
-                    navigate(`/movies/${item?.id}`);
+                    navigate(`/tvseries/${item?.id}`);
                   }}
                   style={{ cursor: "pointer" }}
                   className="card"

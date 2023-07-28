@@ -1,7 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 import Layout from "./Layout.jsx";
-import Carousel from "./Carousl.jsx";
+import Carousel from "./TVSeriesCarousl.jsx";
 import Card from "./Card";
 import { useNavigate } from "react-router-dom";
 
@@ -148,7 +148,7 @@ export default function Documentaries() {
               return (
                 <div
                   onClick={() => {
-                    navigate(`/movies/${item?.id}`);
+                    navigate(`/tvseries/${item?.id}`);
                   }}
                   style={{ cursor: "pointer" }}
                   className="card"
@@ -190,7 +190,7 @@ export default function Documentaries() {
               return (
                 <div
                   onClick={() => {
-                    navigate(`/movies/${item?.id}`);
+                    navigate(`/tvseries/${item?.id}`);
                   }}
                   style={{ cursor: "pointer" }}
                   className="card"

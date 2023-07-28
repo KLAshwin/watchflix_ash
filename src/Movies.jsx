@@ -1,7 +1,7 @@
 import * as React from "react";
 import axios from "axios";
 import Layout from "./Layout.jsx";
-import Carousel from "./Carousl.jsx";
+import Carousel from "./MovieCarousl.jsx";
 import Card from "./Card";
 import { useNavigate } from "react-router-dom";
 
@@ -79,7 +79,7 @@ export default function Movies() {
   return (
     <>
       <Layout>
-        <Carousel config={config} />
+        <Carousel config={config} route={"movies"}/>
         <div
           style={{
             color: "#FFF",

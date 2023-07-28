@@ -20,7 +20,18 @@ export default function VideoPlayer() {
     },
   };
 
+  const options1 = {
+    method: "GET",
+    url: `https://api.themoviedb.org/3/movie/${idx}/videos`,
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTExNmExODI3MGM2MjQwNDM2YjU5NTBkM2E5Nzk0MiIsInN1YiI6IjY0Yjc5MDQ0MTA5Y2QwMDBjN2IwOGI4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6RvMsGmolIcMF89SdM8MndX6WvFp-k3BeR5Mve8iT4U",
+    },
+  };
+
   const [post, setPost] = React.useState();
+  const [video, setVideo] = React.useState([{}]);
   // const [content, setContent] = React.useState();
   const [currentMovie, setCurrentMovie] = React.useState([{}]);
 
@@ -35,16 +46,14 @@ export default function VideoPlayer() {
       arr[0].release_date = arr[0].release_date.slice(0, 4);
       setCurrentMovie(arr);
     });
+
+    axios.request(options1).then(function (response) {
+      console.log("Videos", JSON.stringify(response.data.results));
+      setVideo(response.data.results);
+    });
   }, [idx]);
 
   console.log("currentMovie", currentMovie);
-
-  // React.useEffect(() => {
-  //   axios.get(`https://api.kinocheck.de/movies?tmdb_id=${idx}`).then((response) => {
-  //     setContent(response.data);
-  //     console.log(response.data?.trailer?.youtube_video_id);
-  //   });
-  // }, [idx]);
 
   return (
     <>
@@ -58,7 +67,7 @@ export default function VideoPlayer() {
         >
           <ReactPlayer
             url={
-              "https://zee-demo.s3.ap-south-1.amazonaws.com/Mission_+Impossible+%E2%80%93+Dead+Reckoning+Part+One+_+Official+Trailer+(2023+Movie)+-+Tom+Cruise.mp4"
+              `https://www.youtube.com/watch?v=${video[0]?.key}`
             }
             controls={true}
             width="1344px"
@@ -293,7 +302,7 @@ export default function VideoPlayer() {
                     lineHeight: "normal"
                   }}
                 >
-                  {item[idg]}
+                  {item}
                 </div>
               </div>
             );

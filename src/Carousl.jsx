@@ -60,7 +60,7 @@ export default function Carousl({ config }) {
                     textOverflow: "ellipsis",
                   }}
                 >
-                  {item?.original_title}
+                  {item?.original_title || item?.original_name}
                 </div>
                 <div
                   style={{

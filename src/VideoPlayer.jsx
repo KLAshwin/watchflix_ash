@@ -12,7 +12,7 @@ export default function VideoPlayer() {
   let config = {
     method: "get",
     maxBodyLength: Infinity,
-    url: "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc",
+    url: "https://api.themoviedb.org/3/discover/movie",
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTExNmExODI3MGM2MjQwNDM2YjU5NTBkM2E5Nzk0MiIsInN1YiI6IjY0Yjc5MDQ0MTA5Y2QwMDBjN2IwOGI4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6RvMsGmolIcMF89SdM8MndX6WvFp-k3BeR5Mve8iT4U",
@@ -78,7 +78,7 @@ export default function VideoPlayer() {
             marginLeft: "48px",
           }}
         >
-          {currentMovie[0].original_title}
+          {currentMovie[0].original_title || currentMovie[0].original_name}
         </div>
 
         {/* <svg

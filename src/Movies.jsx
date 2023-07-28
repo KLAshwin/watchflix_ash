@@ -19,12 +19,60 @@ export default function Movies() {
     },
   };
 
+  const options1 = {
+    method: "GET",
+    url: "https://api.themoviedb.org/3/trending/movie/day",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTExNmExODI3MGM2MjQwNDM2YjU5NTBkM2E5Nzk0MiIsInN1YiI6IjY0Yjc5MDQ0MTA5Y2QwMDBjN2IwOGI4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6RvMsGmolIcMF89SdM8MndX6WvFp-k3BeR5Mve8iT4U",
+    },
+  };
+
+  const options2 = {
+    method: "GET",
+    url: "https://api.themoviedb.org/3/discover/movie?api_key=XXXXX&with_genres=27",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTExNmExODI3MGM2MjQwNDM2YjU5NTBkM2E5Nzk0MiIsInN1YiI6IjY0Yjc5MDQ0MTA5Y2QwMDBjN2IwOGI4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6RvMsGmolIcMF89SdM8MndX6WvFp-k3BeR5Mve8iT4U",
+    },
+  };
+
+  const options3 = {
+    method: "GET",
+    url: "https://api.themoviedb.org/3/discover/movie?api_key=XXXXX&with_genres=878",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTExNmExODI3MGM2MjQwNDM2YjU5NTBkM2E5Nzk0MiIsInN1YiI6IjY0Yjc5MDQ0MTA5Y2QwMDBjN2IwOGI4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6RvMsGmolIcMF89SdM8MndX6WvFp-k3BeR5Mve8iT4U",
+    },
+  };
+
   const [post, setPost] = React.useState();
+  const [trend, setTrend] = React.useState();
+  const [horror, setHorror] = React.useState();
+  const [scifi, setSciFi] = React.useState();
 
   React.useEffect(() => {
     axios.request(config).then((response) => {
       console.log(JSON.stringify(response.data.results));
       setPost(response.data.results);
+    });
+
+    axios.request(options1).then(function (response) {
+      console.log("Trending", JSON.stringify(response.data.results));
+      setTrend(response.data.results);
+    });
+
+    axios.request(options2).then(function (response) {
+      console.log("Horror", JSON.stringify(response.data.results));
+      setHorror(response.data.results);
+    });
+
+    axios.request(options3).then(function (response) {
+      console.log("Horror", JSON.stringify(response.data.results));
+      setSciFi(response.data.results);
     });
   }, []);
 
@@ -54,13 +102,13 @@ export default function Movies() {
               overflow: "scroll",
             }}
           >
-            {post?.map((item, idx) => {
+            {trend?.map((item, idx) => {
               return (
                 <div
                   onClick={() => {
                     navigate(`/movies/${item?.id}`);
                   }}
-                  style={{cursor: "pointer"}}
+                  style={{ cursor: "pointer" }}
                   className="card"
                 >
                   <Card
@@ -96,13 +144,13 @@ export default function Movies() {
               overflow: "scroll",
             }}
           >
-            {post?.map((item, idx) => {
+            {horror?.map((item, idx) => {
               return (
                 <div
                   onClick={() => {
                     navigate(`/movies/${item?.id}`);
                   }}
-                  style={{cursor: "pointer"}}
+                  style={{ cursor: "pointer" }}
                   className="card"
                 >
                   <Card
@@ -138,13 +186,13 @@ export default function Movies() {
               overflow: "scroll",
             }}
           >
-            {post?.map((item, idx) => {
+            {scifi?.map((item, idx) => {
               return (
                 <div
                   onClick={() => {
                     navigate(`/movies/${item?.id}`);
                   }}
-                  style={{cursor: "pointer"}}
+                  style={{ cursor: "pointer" }}
                   className="card"
                 >
                   <Card

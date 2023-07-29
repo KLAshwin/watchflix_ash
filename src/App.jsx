@@ -92,7 +92,7 @@ export default function App() {
             marginTop: "30px",
           }}
         >
-          <div style={{ width: "200px", height: "36px" }}>Trending Movies</div>
+          <div style={{ width: "200px", height: "36px" }}>Movies</div>
           <div
             style={{
               display: "flex",
@@ -134,7 +134,7 @@ export default function App() {
             marginTop: "30px",
           }}
         >
-          <div style={{ width: "200px", height: "36px" }}>Trending Series</div>
+          <div style={{ width: "200px", height: "36px" }}>Series</div>
           <div
             style={{
               display: "flex",
@@ -176,7 +176,7 @@ export default function App() {
             marginTop: "30px",
           }}
         >
-          <div style={{ width: "220px", height: "36px" }}>Trending Content</div>
+          <div style={{ width: "220px", height: "36px" }}>Documentaries</div>
           <div
             style={{
               display: "flex",

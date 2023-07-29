@@ -30,8 +30,19 @@ export default function MovieVideoPlayer() {
     },
   };
 
+  const options2 = {
+    method: "GET",
+    url: `https://api.themoviedb.org/3/genre/movie/list`,
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTExNmExODI3MGM2MjQwNDM2YjU5NTBkM2E5Nzk0MiIsInN1YiI6IjY0Yjc5MDQ0MTA5Y2QwMDBjN2IwOGI4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6RvMsGmolIcMF89SdM8MndX6WvFp-k3BeR5Mve8iT4U",
+    },
+  };
+
   const [post, setPost] = React.useState();
   const [video, setVideo] = React.useState([{}]);
+  const [list, setList] = React.useState();
   // const [content, setContent] = React.useState();
   const [currentMovie, setCurrentMovie] = React.useState([{}]);
 
@@ -50,6 +61,11 @@ export default function MovieVideoPlayer() {
     axios.request(options1).then(function (response) {
       console.log("Videos", JSON.stringify(response.data.results));
       setVideo(response.data.results);
+    });
+
+    axios.request(options2).then(function (response) {
+      console.log("Genres", JSON.stringify(response.data.genres));
+      setList(response.data.genres);
     });
   }, [idx]);
 

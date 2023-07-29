@@ -31,7 +31,7 @@ export default function App() {
 
   const options2 = {
     method: "GET",
-    url: "https://api.themoviedb.org/3/discover/movie?api_key=XXXXX&with_genres=27",
+    url: "https://api.themoviedb.org/3/trending/tv/day",
     headers: {
       accept: "application/json",
       Authorization:
@@ -41,7 +41,7 @@ export default function App() {
 
   const options3 = {
     method: "GET",
-    url: "https://api.themoviedb.org/3/discover/movie?api_key=XXXXX&with_genres=878",
+    url: "https://api.themoviedb.org/3/discover/movie?api_key=XXXXX&with_genres=99",
     headers: {
       accept: "application/json",
       Authorization:
@@ -50,9 +50,9 @@ export default function App() {
   };
 
   const [post, setPost] = React.useState();
-  const [trend, setTrend] = React.useState();
-  const [horror, setHorror] = React.useState();
-  const [scifi, setSciFi] = React.useState();
+  const [trendM, setTrendM] = React.useState();
+  const [trendS, setTrendS] = React.useState();
+  const [trendD, setTrendD] = React.useState();
 
   React.useEffect(() => {
     axios.request(config).then((response) => {
@@ -62,17 +62,17 @@ export default function App() {
 
     axios.request(options1).then(function (response) {
       console.log("Trending", JSON.stringify(response.data.results));
-      setTrend(response.data.results);
+      setTrendM(response.data.results);
     });
 
     axios.request(options2).then(function (response) {
       console.log("Horror", JSON.stringify(response.data.results));
-      setHorror(response.data.results);
+      setTrendS(response.data.results);
     });
 
     axios.request(options3).then(function (response) {
       console.log("Horror", JSON.stringify(response.data.results));
-      setSciFi(response.data.results);
+      setTrendD(response.data.results);
     });
   }, []);
 
@@ -92,7 +92,7 @@ export default function App() {
             marginTop: "30px",
           }}
         >
-          <div style={{ width: "169px", height: "36px" }}>Trending Now</div>
+          <div style={{ width: "200px", height: "36px" }}>Trending Movies</div>
           <div
             style={{
               display: "flex",
@@ -102,7 +102,7 @@ export default function App() {
               overflow: "scroll",
             }}
           >
-            {trend?.map((item, idx) => {
+            {trendM?.map((item, idx) => {
               return (
                 <div
                   onClick={() => {
@@ -134,7 +134,7 @@ export default function App() {
             marginTop: "30px",
           }}
         >
-          <div style={{ width: "169px", height: "36px" }}>Horror</div>
+          <div style={{ width: "200px", height: "36px" }}>Trending Series</div>
           <div
             style={{
               display: "flex",
@@ -144,7 +144,7 @@ export default function App() {
               overflow: "scroll",
             }}
           >
-            {horror?.map((item, idx) => {
+            {trendS?.map((item, idx) => {
               return (
                 <div
                   onClick={() => {
@@ -176,7 +176,7 @@ export default function App() {
             marginTop: "30px",
           }}
         >
-          <div style={{ width: "169px", height: "36px" }}>Sci-Fi</div>
+          <div style={{ width: "220px", height: "36px" }}>Trending Content</div>
           <div
             style={{
               display: "flex",
@@ -186,7 +186,7 @@ export default function App() {
               overflow: "scroll",
             }}
           >
-            {scifi?.map((item, idx) => {
+            {trendD?.map((item, idx) => {
               return (
                 <div
                   onClick={() => {

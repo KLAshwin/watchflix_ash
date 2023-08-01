@@ -30,12 +30,25 @@ export default function TVSeriesVideoPlayer() {
     },
   };
 
+  const options2 = {
+    method: "GET",
+    url: `https://api.themoviedb.org/3/genre/tv/list`,
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTExNmExODI3MGM2MjQwNDM2YjU5NTBkM2E5Nzk0MiIsInN1YiI6IjY0Yjc5MDQ0MTA5Y2QwMDBjN2IwOGI4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6RvMsGmolIcMF89SdM8MndX6WvFp-k3BeR5Mve8iT4U",
+    },
+  };
+
   const [post, setPost] = React.useState();
   const [video, setVideo] = React.useState([{}]);
-  // const [content, setContent] = React.useState();
+  const [list, setList] = React.useState();
+  const [more, setMore] = React.useState([{}]);
   const [currentMovie, setCurrentMovie] = React.useState([{}]);
 
   React.useEffect(() => {
+    let moreContent = "https://api.themoviedb.org/3/discover/tv?api_key=XXXXX";
+
     axios.request(config).then((response) => {
       console.log(JSON.stringify(response.data.results));
       setPost(response.data.results);
@@ -45,11 +58,40 @@ export default function TVSeriesVideoPlayer() {
       });
       arr[0].first_air_date = arr[0].first_air_date.slice(0, 4);
       setCurrentMovie(arr);
+
+      for(let i=0;i<arr[0]?.genre_ids?.length;i++)
+      {
+        if(i==0)
+        moreContent = moreContent + "&with_genres=";
+        moreContent = moreContent + arr[0]?.genre_ids[i] + ",";
+        console.log(moreContent + arr[0]?.genre_ids[i] + ",");
+      }
+
+      const options3 = {
+        method: "GET",
+        url: moreContent,
+        headers: {
+          accept: "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTExNmExODI3MGM2MjQwNDM2YjU5NTBkM2E5Nzk0MiIsInN1YiI6IjY0Yjc5MDQ0MTA5Y2QwMDBjN2IwOGI4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6RvMsGmolIcMF89SdM8MndX6WvFp-k3BeR5Mve8iT4U",
+        },
+      };
+  
+      axios.request(options3).then(function (response) {
+        console.log("More Content",moreContent);
+        console.log("More Like This", JSON.stringify(response.data.results));
+        setMore(response.data.results);
+      });
     });
 
     axios.request(options1).then(function (response) {
       console.log("Videos", JSON.stringify(response.data.results));
       setVideo(response.data.results);
+    });
+
+    axios.request(options2).then(function (response) {
+      console.log("Genres", JSON.stringify(response.data.genres));
+      setList(response.data.genres);
     });
   }, [idx]);
 
@@ -66,9 +108,7 @@ export default function TVSeriesVideoPlayer() {
           }}
         >
           <ReactPlayer
-            url={
-              `https://www.youtube.com/watch?v=${video[0]?.key}`
-            }
+            url={`https://www.youtube.com/watch?v=${video[0]?.key}`}
             controls={true}
             width="1344px"
             height="716px"
@@ -278,34 +318,41 @@ export default function TVSeriesVideoPlayer() {
           style={{ marginLeft: "48px", marginTop: "25.7px", display: "flex" }}
         >
           {currentMovie[0]?.genre_ids?.map((item, idg) => {
-            return (
-              <div
-                style={{
-                  borderRadius: "22.511px",
-                  border: "1.072px solid #DA3714",
-                  backgroundColor: "rgba(72, 13, 13, 0.00)",
-                  width: "154.526px",
-                  height: "39.62px",
-                  padding: "7.204px 46.823px",
-                  gap: "28.814px",
-                  flexShrink: "0",
-                  marginRight: "20px"
-                }}
-              >
-                <div
-                  style={{
-                    color: "#DA3714",
-                    fontFamily: "Montserrat",
-                    fontSize: "21.611px",
-                    fontStyle: "normal",
-                    fontWeight: "500",
-                    lineHeight: "normal"
-                  }}
-                >
-                  {item}
-                </div>
-              </div>
-            );
+            for (let i = 0; i < list?.length; i++) {
+              if (list[i]?.id == item) {
+                return (
+                  <div
+                    style={{
+                      borderRadius: "22.511px",
+                      border: "1.072px solid #DA3714",
+                      backgroundColor: "rgba(72, 13, 13, 0.00)",
+                      width: "170px",
+                      height: "39.62px",
+                      padding: "7.204px 46.823px",
+                      gap: "28.814px",
+                      flexShrink: "0",
+                      marginRight: "20px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div
+                      style={{
+                        color: "#DA3714",
+                        fontFamily: "Montserrat",
+                        fontSize: "21.611px",
+                        fontStyle: "normal",
+                        fontWeight: "500",
+                        lineHeight: "normal",
+                      }}
+                    >
+                      {list[i].name}
+                    </div>
+                  </div>
+                );
+              }
+            }
           })}
         </div>
 
@@ -315,9 +362,9 @@ export default function TVSeriesVideoPlayer() {
             flexShrink: "0",
             color: "#FFF",
             fontFamily: "Overpass",
-            fontSize: "32px",
+            fontSize: "22px",
             fontStyle: "normal",
-            fontWeight: "400",
+            fontWeight: "500",
             lineHeight: "normal",
             letterSpacing: "0.96px",
             marginTop: "69.99px",
@@ -349,7 +396,7 @@ export default function TVSeriesVideoPlayer() {
               overflow: "scroll",
             }}
           >
-            {post?.map((item, idx) => {
+            {more?.map((item, idx) => {
               return (
                 <div
                   onClick={() => {

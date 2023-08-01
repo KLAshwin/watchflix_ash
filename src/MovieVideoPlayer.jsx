@@ -13,6 +13,7 @@ export default function MovieVideoPlayer() {
     method: "get",
     maxBodyLength: Infinity,
     url: "https://api.themoviedb.org/3/discover/movie",
+    //url: "https://api.themoviedb.org/3/discover/movie?api_key=XXXXX&with_genres=28|12|16|35|80|99|18|10751|14|36|27|10402|9648|10749|878|10770|53|10752|37",
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTExNmExODI3MGM2MjQwNDM2YjU5NTBkM2E5Nzk0MiIsInN1YiI6IjY0Yjc5MDQ0MTA5Y2QwMDBjN2IwOGI4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6RvMsGmolIcMF89SdM8MndX6WvFp-k3BeR5Mve8iT4U",
@@ -43,10 +44,12 @@ export default function MovieVideoPlayer() {
   const [post, setPost] = React.useState();
   const [video, setVideo] = React.useState([{}]);
   const [list, setList] = React.useState();
-  // const [content, setContent] = React.useState();
+  const [more, setMore] = React.useState([{}]);
   const [currentMovie, setCurrentMovie] = React.useState([{}]);
 
   React.useEffect(() => {
+    let moreContent = "https://api.themoviedb.org/3/discover/movie?api_key=XXXXX";
+
     axios.request(config).then((response) => {
       console.log(JSON.stringify(response.data.results));
       setPost(response.data.results);
@@ -54,8 +57,33 @@ export default function MovieVideoPlayer() {
       let arr = response.data.results?.filter((item, id) => {
         return item?.id == idx;
       });
+      console.log("arr",arr);
       arr[0].release_date = arr[0].release_date.slice(0, 4);
       setCurrentMovie(arr);
+
+      for(let i=0;i<arr[0]?.genre_ids?.length;i++)
+      {
+        if(i==0)
+        moreContent = moreContent + "&with_genres=";
+        moreContent = moreContent + arr[0]?.genre_ids[i] + ",";
+        console.log(moreContent + arr[0]?.genre_ids[i] + ",");
+      }
+
+      const options3 = {
+        method: "GET",
+        url: moreContent,
+        headers: {
+          accept: "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTExNmExODI3MGM2MjQwNDM2YjU5NTBkM2E5Nzk0MiIsInN1YiI6IjY0Yjc5MDQ0MTA5Y2QwMDBjN2IwOGI4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6RvMsGmolIcMF89SdM8MndX6WvFp-k3BeR5Mve8iT4U",
+        },
+      };
+  
+      axios.request(options3).then(function (response) {
+        console.log("More Content",moreContent);
+        console.log("More Like This", JSON.stringify(response.data.results));
+        setMore(response.data.results);
+      });
     });
 
     axios.request(options1).then(function (response) {
@@ -82,9 +110,7 @@ export default function MovieVideoPlayer() {
           }}
         >
           <ReactPlayer
-            url={
-              `https://www.youtube.com/watch?v=${video[0]?.key}`
-            }
+            url={`https://www.youtube.com/watch?v=${video[0]?.key}`}
             controls={true}
             width="1344px"
             height="716px"
@@ -106,108 +132,6 @@ export default function MovieVideoPlayer() {
           {currentMovie[0].original_title}
         </div>
 
-        {/* <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          viewBox="0 0 30 30"
-          fill="none"
-        >
-          <g clip-path="url(#clip0_2_1305)">
-            <path
-              d="M13.75 13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75V16.25H6.25V13.75H13.75Z"
-              fill="white"
-            />
-          </g>
-          <defs>
-            <clipPath id="clip0_2_1305">
-              <rect width="30" height="30" fill="white" />
-            </clipPath>
-          </defs>
-        </svg>
-
-        <div
-          style={{
-            color: "#FFF",
-            fontFamily: "Overpass",
-            fontSize: "15px",
-            fontStyle: "normal",
-            fontWeight: "600",
-            lineHeight: "24px",
-            letterSpacing: "0.45px",
-          }}
-        >
-          WATCHLIST
-        </div>
-
-        <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="31"
-            height="30"
-            viewBox="0 0 31 30"
-            fill="none"
-          >
-            <g clip-path="url(#clip0_2_1311)">
-              <path
-                d="M17.9908 20.8255L12.3433 17.7453C11.8012 18.2834 11.1119 18.649 10.3623 18.7959C9.61274 18.9429 8.83644 18.8646 8.13129 18.571C7.42614 18.2774 6.8237 17.7816 6.39992 17.1461C5.97614 16.5106 5.75 15.7638 5.75 15C5.75 14.2362 5.97614 13.4894 6.39992 12.8539C6.8237 12.2184 7.42614 11.7226 8.13129 11.429C8.83644 11.1354 9.61274 11.0571 10.3623 11.2041C11.1119 11.351 11.8012 11.7166 12.3433 12.2547L17.9908 9.17453C17.7971 8.26576 17.937 7.31765 18.3849 6.50355C18.8328 5.68946 19.5588 5.06379 20.4301 4.74097C21.3014 4.41814 22.2598 4.41973 23.13 4.74545C24.0002 5.07116 24.7241 5.69923 25.1693 6.51481C25.6145 7.33038 25.7512 8.27896 25.5545 9.18707C25.3578 10.0952 24.8408 10.9022 24.098 11.4604C23.3552 12.0186 22.4363 12.2909 21.5093 12.2273C20.5823 12.1637 19.7092 11.7686 19.0496 11.1141L13.402 14.1943C13.5147 14.7255 13.5147 15.2745 13.402 15.8057L19.0496 18.8859C19.7092 18.2314 20.5823 17.8363 21.5093 17.7727C22.4363 17.7091 23.3552 17.9814 24.098 18.5396C24.8408 19.0978 25.3578 19.9048 25.5545 20.8129C25.7512 21.721 25.6145 22.6696 25.1693 23.4852C24.7241 24.3008 24.0002 24.9288 23.13 25.2546C22.2598 25.5803 21.3014 25.5819 20.4301 25.259C19.5588 24.9362 18.8328 24.3105 18.3849 23.4964C17.937 22.6824 17.7971 21.7342 17.9908 20.8255Z"
-                fill="white"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_2_1311">
-                <rect
-                  width="30"
-                  height="30"
-                  fill="white"
-                  transform="translate(0.5)"
-                />
-              </clipPath>
-            </defs>
-          </svg>
-          <div
-            style={{
-              color: "#FFF",
-              fontFamily: "Overpass",
-              fontSize: "15px",
-              fontStyle: "normal",
-              fontWeight: "600",
-              lineHeight: "24px",
-              letterSpacing: "0.45px",
-            }}
-          >
-            SHARE
-          </div>
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="140"
-            height="151"
-            viewBox="0 0 140 151"
-            fill="none"
-          >
-            <g clip-path="url(#clip0_2_1274)">
-              <path
-                d="M54.7026 101.067V50.9321L92.0675 75.9997L54.7026 101.067Z"
-                fill="white"
-              />
-              <path
-                d="M67 134.333C34.7825 134.333 8.66663 108.217 8.66663 75.9997C8.66663 43.7822 34.7825 17.6664 67 17.6664C99.2175 17.6664 125.333 43.7822 125.333 75.9997C125.333 108.217 99.2175 134.333 67 134.333ZM58.9616 55.0872C58.6106 54.853 58.2025 54.7184 57.781 54.6977C57.3595 54.677 56.9402 54.771 56.5679 54.9698C56.1956 55.1685 55.8842 55.4645 55.6667 55.8262C55.4493 56.1879 55.3341 56.6019 55.3333 57.0239V94.9756C55.3341 95.3976 55.4493 95.8115 55.6667 96.1733C55.8842 96.535 56.1956 96.831 56.5679 97.0297C56.9402 97.2285 57.3595 97.3225 57.781 97.3018C58.2025 97.2811 58.6106 97.1465 58.9616 96.9122L87.4225 77.9422C87.7426 77.7292 88.005 77.4405 88.1866 77.1016C88.3681 76.7627 88.4631 76.3842 88.4631 75.9997C88.4631 75.6153 88.3681 75.2368 88.1866 74.8979C88.005 74.559 87.7426 74.2702 87.4225 74.0572L58.9616 55.0872Z"
-                fill="#DA3714"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_2_1274">
-                <rect
-                  width="140"
-                  height="150.075"
-                  fill="white"
-                  transform="translate(-0.000488281 0.54541)"
-                />
-              </clipPath>
-            </defs>
-          </svg>
-        </div> */}
         <div style={{ display: "flex" }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -294,34 +218,41 @@ export default function MovieVideoPlayer() {
           style={{ marginLeft: "48px", marginTop: "25.7px", display: "flex" }}
         >
           {currentMovie[0]?.genre_ids?.map((item, idg) => {
-            return (
-              <div
-                style={{
-                  borderRadius: "22.511px",
-                  border: "1.072px solid #DA3714",
-                  backgroundColor: "rgba(72, 13, 13, 0.00)",
-                  width: "154.526px",
-                  height: "39.62px",
-                  padding: "7.204px 46.823px",
-                  gap: "28.814px",
-                  flexShrink: "0",
-                  marginRight: "20px"
-                }}
-              >
-                <div
-                  style={{
-                    color: "#DA3714",
-                    fontFamily: "Montserrat",
-                    fontSize: "21.611px",
-                    fontStyle: "normal",
-                    fontWeight: "500",
-                    lineHeight: "normal"
-                  }}
-                >
-                  {item}
-                </div>
-              </div>
-            );
+            for (let i = 0; i < list?.length; i++) {
+              if (list[i]?.id == item) {
+                return (
+                  <div
+                    style={{
+                      borderRadius: "22.511px",
+                      border: "1.072px solid #DA3714",
+                      backgroundColor: "rgba(72, 13, 13, 0.00)",
+                      width: "170px",
+                      height: "39.62px",
+                      padding: "7.204px 46.823px",
+                      gap: "28.814px",
+                      flexShrink: "0",
+                      marginRight: "20px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center"
+                    }}
+                  >
+                    <div
+                      style={{
+                        color: "#DA3714",
+                        fontFamily: "Montserrat",
+                        fontSize: "21.611px",
+                        fontStyle: "normal",
+                        fontWeight: "500",
+                        lineHeight: "normal",
+                      }}
+                    >
+                      {list[i]?.name}
+                    </div>
+                  </div>
+                );
+              }
+            }
           })}
         </div>
 
@@ -331,9 +262,9 @@ export default function MovieVideoPlayer() {
             flexShrink: "0",
             color: "#FFF",
             fontFamily: "Overpass",
-            fontSize: "32px",
+            fontSize: "22px",
             fontStyle: "normal",
-            fontWeight: "400",
+            fontWeight: "500",
             lineHeight: "normal",
             letterSpacing: "0.96px",
             marginTop: "69.99px",
@@ -365,7 +296,7 @@ export default function MovieVideoPlayer() {
               overflow: "scroll",
             }}
           >
-            {post?.map((item, idx) => {
+            {more?.map((item, idx) => {
               return (
                 <div
                   onClick={() => {

@@ -527,7 +527,7 @@ export default function TVSeries() {
             marginTop: "30px",
           }}
         >
-          <div style={{ width: "169px", height: "36px" }}>Action & Adventure</div>
+          <div style={{ width: "250px", height: "36px" }}>Action & Adventure</div>
           <div
             style={{
               display: "flex",

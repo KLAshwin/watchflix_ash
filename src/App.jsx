@@ -92,7 +92,30 @@ export default function App() {
             marginTop: "30px",
           }}
         >
-          <div style={{ width: "200px", height: "36px" }}>Movies</div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ width: "220px", height: "36px" }}>Movies</div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+              }}
+            >
+              <div
+                style={{
+                  color: "#DA3714",
+                  marginRight: "130px",
+                  cursor: "pointer",
+                  fontSize: "18px",
+                  fontStyle: "normal",
+                  fontWeight: "500"
+                }}
+                onClick={() => {navigate('/movies')}}
+              >
+                More &#62;
+              </div>
+            </div>
+          </div>
           <div
             style={{
               display: "flex",
@@ -134,7 +157,30 @@ export default function App() {
             marginTop: "30px",
           }}
         >
-          <div style={{ width: "200px", height: "36px" }}>Series</div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ width: "220px", height: "36px" }}>Series</div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+              }}
+            >
+              <div
+                style={{
+                  color: "#DA3714",
+                  marginRight: "130px",
+                  cursor: "pointer",
+                  fontSize: "18px",
+                  fontStyle: "normal",
+                  fontWeight: "500"
+                }}
+                onClick={() => {navigate('/tvseries')}}
+              >
+                More &#62;
+              </div>
+            </div>
+          </div>
           <div
             style={{
               display: "flex",
@@ -176,7 +222,30 @@ export default function App() {
             marginTop: "30px",
           }}
         >
-          <div style={{ width: "220px", height: "36px" }}>Documentaries</div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ width: "220px", height: "36px" }}>Documentaries</div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+              }}
+            >
+              <div
+                style={{
+                  color: "#DA3714",
+                  marginRight: "130px",
+                  cursor: "pointer",
+                  fontSize: "18px",
+                  fontStyle: "normal",
+                  fontWeight: "500"
+                }}
+                onClick={() => {navigate('/documentaries')}}
+              >
+                More &#62;
+              </div>
+            </div>
+          </div>
           <div
             style={{
               display: "flex",

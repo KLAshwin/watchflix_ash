@@ -129,7 +129,7 @@ export default function App() {
               return (
                 <div
                   onClick={() => {
-                    navigate(`/movies/${item?.id}`);
+                    navigate(`/movies/${item?.id}/${item?.original_title}`);
                   }}
                   style={{ cursor: "pointer" }}
                   className="card"
@@ -194,7 +194,7 @@ export default function App() {
               return (
                 <div
                   onClick={() => {
-                    navigate(`/movies/${item?.id}`);
+                    navigate(`/tvseries/${item?.id}`);
                   }}
                   style={{ cursor: "pointer" }}
                   className="card"

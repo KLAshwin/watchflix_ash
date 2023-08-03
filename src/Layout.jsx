@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -6,6 +6,9 @@ import Divider from '@mui/material/Divider';
 import { useNavigate } from "react-router-dom";
 
 export default function Layout(props) {
+
+  const [pointer, setPointer] = React.useState([false,false,false,false]);
+
   const navigate = useNavigate();
   function Header() {
     return (
@@ -54,7 +57,7 @@ export default function Layout(props) {
                     textAlign: "left",
                     cursor: "pointer",
                   }}
-                  onClick={() => navigate("/movies")}
+                  onClick={() => {setPointer([true,false,false,false]), navigate("/movies")}}
                 >
                   Movies
                 </div>
@@ -63,6 +66,7 @@ export default function Layout(props) {
                     width: "24px",
                     height: "3.75px",
                     backgroundColor: "#DA3714",
+                    display: pointer[0] ? "block" : "none"
                   }}
                 ></div>
               </span>

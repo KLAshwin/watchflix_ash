@@ -13,6 +13,7 @@ import Login from './Login.jsx'
 import SignUp from './SignUp.jsx'
 import Notifications from './Notifications.jsx'
 import ErrorPage from './ErrorPage.jsx'
+import Search from './Search.jsx'
 import './App.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -27,6 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/tvseries/:idx" element={<TVSeriesVideoPlayer />}/>
         <Route path="/documentaries" element={<Documentaries />}/>
         <Route path="/categories" element={<Categories />}/>
+        <Route path="/search" element={<Search />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/signup" element={<SignUp />}/>
         <Route path="/notifications" element={<Notifications />}/>

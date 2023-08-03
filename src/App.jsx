@@ -129,7 +129,7 @@ export default function App() {
               return (
                 <div
                   onClick={() => {
-                    navigate(`/movies/${item?.id}/${item?.original_title}`);
+                    navigate(`/movies/${item?.id}`);
                   }}
                   style={{ cursor: "pointer" }}
                   className="card"

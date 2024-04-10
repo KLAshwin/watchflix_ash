@@ -288,6 +288,7 @@ export default function MovieVideoPlayer() {
         >
           <div style={{ width: "169px", height: "36px" }}>More Like This</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",

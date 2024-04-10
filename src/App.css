@@ -3,6 +3,17 @@
 @import url(https://fonts.googleapis.com/css?family=Overpass);
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
-.card:hover{
-    scale: 1.2;
+.card:hover {
+  scale: 1.2;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.trayContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.trayContainer {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

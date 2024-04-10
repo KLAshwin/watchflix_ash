@@ -319,6 +319,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Trending Now</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -361,6 +362,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Crime</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -403,6 +405,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Sci-Fi</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -445,6 +448,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Animation</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -487,6 +491,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>War & Politics</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -529,6 +534,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "250px", height: "36px" }}>Action & Adventure</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -571,6 +577,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Kids</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -613,6 +620,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Mystery</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -655,6 +663,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Western</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -697,6 +706,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Comedy</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -739,6 +749,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Family</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -781,6 +792,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Drama</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -823,6 +835,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Reality</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -865,6 +878,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Soap</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -907,6 +921,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Documentary</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -949,6 +964,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Talk</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -991,6 +1007,7 @@ export default function TVSeries() {
         >
           <div style={{ width: "169px", height: "36px" }}>News</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",

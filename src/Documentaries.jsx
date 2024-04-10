@@ -94,6 +94,7 @@ export default function Documentaries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Movies</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -136,6 +137,7 @@ export default function Documentaries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Series</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -178,6 +180,7 @@ export default function Documentaries() {
         >
           <div style={{ width: "169px", height: "36px" }}>Reality</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",

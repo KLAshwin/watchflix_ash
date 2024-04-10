@@ -351,7 +351,7 @@ export default function Movies() {
   return (
     <>
       <Layout>
-        <Carousel config={config} route={"movies"}/>
+        <Carousel config={config} route={"movies"} />
         <div
           style={{
             color: "#FFF",
@@ -366,6 +366,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Trending Now</div>
           <div
+            className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -408,6 +409,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Action</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -450,6 +452,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Adventure</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -492,6 +495,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>War</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -534,6 +538,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Thriller</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -576,6 +581,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Sci-Fi</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -618,6 +624,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Horror</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -660,6 +667,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Romance</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -702,6 +710,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Fantasy</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -744,6 +753,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Family</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -786,6 +796,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Animation</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -828,6 +839,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Comedy</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -870,6 +882,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Documentary</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -912,6 +925,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Drama</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -954,6 +968,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>History</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -996,6 +1011,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Music</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -1038,6 +1054,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>TV Movie</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -1080,6 +1097,7 @@ export default function Movies() {
         >
           <div style={{ width: "169px", height: "36px" }}>Western</div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",

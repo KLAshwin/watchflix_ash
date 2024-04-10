@@ -117,6 +117,7 @@ export default function App() {
             </div>
           </div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -182,6 +183,7 @@ export default function App() {
             </div>
           </div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",
@@ -247,6 +249,7 @@ export default function App() {
             </div>
           </div>
           <div
+          className="trayContainer"
             style={{
               display: "flex",
               marginTop: "12.23px",

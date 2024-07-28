@@ -1129,3 +1129,9 @@ export default function Movies() {
     </>
   );
 }
+
+
+
+
+
+
